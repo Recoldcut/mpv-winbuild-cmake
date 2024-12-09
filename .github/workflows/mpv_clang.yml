@@ -330,8 +330,8 @@ jobs:
         run: |
           url=$(curl -su Recoldcut:$GH_TOKEN -X GET -H "Accept: application/vnd.github.v3+json" https://api.github.com/repos/Recoldcut/mpv-winbuild-cmake/actions/runs/$RUN_ID/jobs | jq -r '.jobs[0] | .url')
           curl -sLu Recoldcut:$GH_TOKEN -X GET -H "Accept: application/vnd.github.v3+json" $url/logs -o mpv_log
-          git clone --depth 1 https://Recoldcut:$GH_TOKEN@gist.github.com/90308c6632c9010d03b325c9ca6a4b6f job_log
+          git clone --depth 1 https://Recoldcut:$GH_TOKEN@gist.github.com/6b2e0f95c1b90722bcdefcc5944b3a22 job_log
           cp -f mpv_log job_log/mpv_log
           git -C job_log add .
           git -C job_log commit --amend --no-edit
-          git -C job_log push -f https://Recoldcut:$GH_TOKEN@gist.github.com/90308c6632c9010d03b325c9ca6a4b6f
+          git -C job_log push -f https://Recoldcut:$GH_TOKEN@gist.github.com/6b2e0f95c1b90722bcdefcc5944b3a22
