@@ -243,7 +243,6 @@ jobs:
       - name: Moving archives
         run: |
           mkdir -p release
-          # #Recoldcut# mv release_i686/* release_x86_64/* release_x86_64_v3/* release_aarch64/* release
           mv release_x86_64/* release_x86_64_v3/* release
           du -ah release/*
 
