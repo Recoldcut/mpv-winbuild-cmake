@@ -331,6 +331,10 @@ jobs:
           curl -sLu Recoldcut:$GH_TOKEN -X GET -H "Accept: application/vnd.github.v3+json" $url/logs -o mpv_log
           git clone --depth 1 https://Recoldcut:$GH_TOKEN@gist.github.com/6b2e0f95c1b90722bcdefcc5944b3a22 job_log
           cp -f mpv_log job_log/mpv_log
-          git -C job_log add .
-          git -C job_log commit --amend --no-edit
-          git -C job_log push -f https://Recoldcut:$GH_TOKEN@gist.github.com/6b2e0f95c1b90722bcdefcc5944b3a22
+          if [ -n "$(git -C job_log status --porcelain)" ]; then
+            git -C job_log add .
+            git -C job_log commit --amend --no-edit
+            git -C job_log push -f https://Recoldcut:$GH_TOKEN@gist.github.com/6b2e0f95c1b90722bcdefcc5944b3a22
+          else
+            echo "No changes to commit."
+          fi
