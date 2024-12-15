@@ -1,9 +1,14 @@
 # Make it fetch latest tarball release since I'm too lazy to manually change it
 set(PREFIX_DIR ${CMAKE_CURRENT_BINARY_DIR}/mpv-release-prefix)
+# file(WRITE ${PREFIX_DIR}/get_latest_tag.sh
+# "#!/bin/bash
+# tag=$(curl -sI https://github.com/mpv-player/mpv/releases/latest | grep 'location: https://github.com/mpv-player/mpv/releases' | sed 's#.*/##g' | tr -d '\r')
+# printf 'https://github.com/mpv-player/mpv/archive/%s.tar.gz' $tag")
+
 file(WRITE ${PREFIX_DIR}/get_latest_tag.sh
 "#!/bin/bash
-tag=$(curl -sI https://github.com/mpv-player/mpv/releases/latest | grep 'location: https://github.com/mpv-player/mpv/releases' | sed 's#.*/##g' | tr -d '\r')
-printf 'https://github.com/mpv-player/mpv/archive/%s.tar.gz' $tag")
+tag=$(curl -sI https://github.com/Recoldcut/mpv/releases/latest | grep 'location: https://github.com/Recoldcut/mpv/releases' | sed 's#.*/##g' | tr -d '\r')
+printf 'https://github.com/Recoldcut/mpv/archive/%s.tar.gz' $tag")
 
 # Workaround since cmake dont allow you to change file permission easily
 file(COPY ${PREFIX_DIR}/get_latest_tag.sh
